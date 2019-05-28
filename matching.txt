@@ -1,0 +1,13 @@
+#Sequence1: ATTGCCATT
+#Sequence2: ATGGCATT
+#Mode: distance
+#Score: 4
+#Length: 9
+#Match: 1
+#Mismatch: -1
+#Gap: -2
+#Identity: 7/9 78%
+#Gaps: 1/9 11%
+ATTGCCATT
+|| || |||
+ATGGC_ATT
