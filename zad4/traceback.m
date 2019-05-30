@@ -1,4 +1,4 @@
-function [score] = traceback(scoredMatrix,seq1,seq2,match,mismatch,gap)
+function [steps] = traceback(scoredMatrix,seq1,seq2,match,mismatch,gap)
 %znalezienie optymalnego dopasowania polega na znalezieniu
 %najkrótszej œcie¿ki z tabeli pochodz¹cej z globalMatching
 %Je¿eli odpowiednio zmodyfikujê tabelê, bêdê mog³a odtworzyæ wszystkie
@@ -13,8 +13,8 @@ m =  size(scoredMatrix,2);
 %oraz wykorzystanie pomys³u ze skryptu innego jêzyka programowania ze Ÿród³a: https://github.com/Orion9/NeedlemanWunsch/blob/master/src/NeedlemanWunsch.cpp
 steps=[];
 
-optimalPath(1,1)= 1%pocz¹tek tracebacku
-optimalPath(m,n)= 1%koniec tracebacku
+optimalPath(1,1)= 1;%pocz¹tek tracebacku
+optimalPath(m,n)= 1;%koniec tracebacku
 
 while (n~=1) && (m~=1)
     score = scoredMatrix(n,m);
@@ -50,19 +50,9 @@ end
              steps = [steps,3];                
          end
     end
-
-optimalPath;
-
+end 
 
 end
-%spy(optimalPath,'rd')  
-%heatmap(optimalPath)
-%xlabel('Sequence 1');
-%ylabel('Sequence 2');
 
-%odwróæ tablice z lewej na prawo optymalna œzie¿ka od góry
-%steps = fliplr(steps)  
-score = scoredMatrix(end,end);
-scoredMatrix
-saveE(seq1,seq2,steps,score,match,mismatch,gap)
+
 

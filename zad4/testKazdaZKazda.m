@@ -1,0 +1,1 @@
+everyWithEvery('AGGG','AGCTTGCGT','AGCGAAA','AAGGTC',2,-1,-1)

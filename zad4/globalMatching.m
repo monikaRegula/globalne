@@ -1,7 +1,9 @@
-function [match] = globalMatching(seq1,seq2,match,mismatch,gap)
+function [scoredMatrix,prawyRog] = globalMatching(seq1,seq2,match,mismatch,gap)
 %Funkcja generuje macierz punktacji dla dwóch podanych sekwencji oraz parametrów
 %zgodnoœæ, niezgodnoœæ oraz gap. Posiada równie¿ zagnie¿d¿on¹ funkcjê
 %znajduj¹c¹ drogê optymalnego dopasowania.
+seq2(seq2 == ' ') = [];
+seq1(seq1 == ' ') = [];
 s1 = length(seq1);
 s2 = length(seq2);
 scoredMatrix = zeros(s1+1,s2+1);%prealokacja
@@ -20,25 +22,14 @@ for i = 2:n %iteracja po wierszach
         end
         left = scoredMatrix(i-1,j) + gap; %z lewej 
         up = scoredMatrix(i,j-1) + gap; %z góry
-        left
-        up
         %wybranie maksimum z 3 opcji score: diagonal,left,up
         % maksimum to odleg³oœæ edycyjna pomiêdzy seq1 a seq2
         maxScore = max([diagonal, left,up]);
-        %[maxScore, maxIndex] = max([diagonal left up]);
         scoredMatrix(i,j)= maxScore;
-       % indexes(i,j) = maxIndex;
-     
     end
   
 end
-imagesc(scoredMatrix)
-       xlabel('Sequence 1');
-       ylabel('Sequence 2');
-       colorbar
-%zagnie¿dzenie funkcji traceback
-tracebackGlobal(scoredMatrix,seq1,seq2,match,mismatch,gap)
-
+prawyRog = scoredMatrix(n,m);
 end
 
 
