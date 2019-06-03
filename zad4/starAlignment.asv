@@ -3,13 +3,13 @@ function  starAlignment(nowaKolejnoscSek,match,mismatch,gap)
 ds=[];
 dss=[];
 for i = 2:size(nowaKolejnoscSek,1)
-starCenter = nowaKolejnoscSek(1,:);
-starCenter(starCenter == ' ')= []
+starCenter = nowaKolejnoscSek(1,:)
+starCenter(starCenter == ' ')= [];
 comparedSequence = nowaKolejnoscSek(i,:);
 comparedSequence(comparedSequence == ' ')= []
 
 [scoredMatrix,prawyRog] = globalMatching(starCenter,comparedSequence,match,mismatch,gap);
-[steps] = traceback(scoredMatrix,starCenter,comparedSequence,match,mismatch,gap);
+[steps] = traceback(scoredMatrix,starCenter,comparedSequence,match,mismatch,gap)
 [alignment1, alignment2] = alignAfterMatching(steps,starCenter,comparedSequence);
 
 %dopasowania
@@ -23,9 +23,8 @@ else
 end
 
 end
-disp('to s¹ alignment1 z dopasowania sekwencji s1,s2,s4  z starCenter(s3)')
+
 matchedSeq = char(split(ds,' '))
-disp('to s¹ alignment2 z dopasowania z starCenter(s3)')
 stars = char(split(dss,' '))
 
 checkGaps(starCenter,matchedSeq,stars)

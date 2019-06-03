@@ -22,14 +22,8 @@ for i = length(steps):-1:1
     elseif steps(i) == 2     
         %jeœli wartoœæ z wektora zapamiêtuj¹cego drogê (steps) = 2
         %czyli elementty obu sekwencji s¹ zgodne
-        if seq1(m) == seq2(n)  
         alignment1 = strcat(alignment1,seq1(m));      
-        alignment2 = strcat(alignment2,seq2(n)); 
-        else
-        %jeœli elementy obu sewencji nie s¹ równe to dodaj wstaw
-        alignment1 = strcat(alignment1,seq1(m));      
-        alignment2 = strcat(alignment2,'-'); 
-        end    
+        alignment2 = strcat(alignment2,seq2(n));  
         %zwiêksz pozycjê wiersza (Sekwencja 2)
         n = n + 1;  
         %zwiêksz pozycjê kolumny (Sekwencja 1)

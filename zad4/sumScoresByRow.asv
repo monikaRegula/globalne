@@ -1,15 +1,15 @@
 function sumScoresByRow(scoredMatrix,scores,A,match,mismatch,gap)
 %funkcja dla macierzy punktacji sumuje po wierszach scory
 sumyMaxScorow = [];
-kolejnoscSekwencji = [1 2 3 4]';
+kolejnoscSekwencji = [1 2 3 4]'
 %navigatorDoSortowanieSekwencji w tej macierzy w kolumnie 1. sumy w 
 %kolumnie 2. odpowiadaj¹ca temu sekwencja
 navigatorDoSortowaniaSekwencji = zeros(4,2);
 disp('sumujRzedemMaxScore');
 for i = 1 : size(scores,1)
     %sumuje w pêtli po wierszach maxScore
-        sumyMaxScorow = [sumyMaxScorow ; sum(scores(i,:))];
-        navigatorDoSortowaniaSekwencji(i,:) = [sumyMaxScorow(i,:) kolejnoscSekwencji(i,:)];
+        sumyMaxScorow = [sumyMaxScorow ; sum(scores(i,:))]
+        navigatorDoSortowaniaSekwencji(i,:) = [sumyMaxScorow(i,:) kolejnoscSekwencji(i,:)]
 end
 
 %sortuje sumy maxScorów malej¹co

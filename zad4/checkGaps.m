@@ -1,56 +1,64 @@
 function checkGaps(starCenter,matchedSeq,stars)
-%porównujêcentrum gwiazdy z wygenerowanymi dopasowaniami
+%porównujê centrum gwiazdy z wygenerowanymi dopasowaniami
 %centrami gwiazdy ; ka¿de nastêpne centrum gwiazdy jest pozosta³oœci¹ z poprzedniej
 %pêtli dopasowania
 actualStarCenter{1} = starCenter;
 
 for i = 1 : 3
-   temporaryStarCenter = actualStarCenter{1}
+    nowaGwiazda=''; 
+    %stara gwiazda
+   temporaryStarCenter = actualStarCenter{1};
+   %dopasowana wczeœniej gwiazda
    loopStarCenter = stars(i,:);
-   loopStarCenter(loopStarCenter == ' ') = []
+   loopStarCenter(loopStarCenter == ' ') = [];
+   %dopasowana sekwencja
    alignment2 = matchedSeq(i,:);
    newSequences{i} = alignment2;
    newStarCenter = loopStarCenter;
    
    a = length(temporaryStarCenter);
    b = length(loopStarCenter);
+   [counter1,counter2] = countGaps(temporaryStarCenter,loopStarCenter);
+   seq1 = temporaryStarCenter;
+   seq2 = loopStarCenter;
+   j = 1;
+   k = 1;
    
-   %kiedy ró¿ne s¹ d³ugoœci starego centrum gwiazdy z dopasowaniami centrum
-   %gwiazdy
-   if(a ~= b)
-        k = 1; 
-        newStarCenter = '';
-        %tak d³ugo jak dopasowanie 
-        for j = 1:length(loopStarCenter)
-            c = loopStarCenter(j)
-            d = temporaryStarCenter(k)
-            temporaryStarCenter(k)
-            %kiedy element dopasowania jest  ni¿ element starej centrum
-            %gwiazdy
-            if(c ~= d )
-               newStarCenter = strcat(newStarCenter, loopStarCenter(j));
-               disp('inne d³ugoœci loop i temporary')
-                for l = 1:length(actualStarCenter)
-                    new = actualStarCenter{l};
-                    newW = [new(1:l), '-', new(l+1:end)];
-                    actualStarCenter{l} = newW;
-                end
-            else
-                 disp('te same d³ugoœci loop i temporary')
-                newStarCenter = strcat(newStarCenter, temporaryStarCenter(k));
-                if (k ~= length(temporaryStarCenter))
-                    k = k+1;
-                end
-                
+  
+   while(j ~= (b))
+       if(seq1(k) == seq2(j))
+           if(seq1(k) == '-')
+               disp('te same ale gap w seq1');
+               nowaGwiazda = strcat(nowaGwiazda,'-');
+               j = j-1;
+           elseif(seq2(j) == '-')
+               disp('te same ale gap w seq2');
+                nowaGwiazda = strcat(nowaGwiazda,'-');
+                k=k-1;
+           else
+              disp('te same i seq1 wrzuæ');
+              nowaGwiazda = strcat(nowaGwiazda,seq1(k));
+           end 
+       else
+            if(seq1(k) == '-')
+                disp('inne ale gap w seq1');
+               nowaGwiazda = strcat(nowaGwiazda,'-');
+               j=j-1;
+            elseif(seq2(j)=='-')
+                disp('inne ale gap w seq2');
+              nowaGwiazda = strcat(nowaGwiazda,'-');
+              k=k-1;
             end
-            
-        end
-        
-   end
-   
-   %nadpisywane s¹ centra gwiazd
-    actualStarCenter{1} = newStarCenter
-   
+       end
+   k=k+1;
+   j=j+1;
+%nadpisywane s¹ centra gwiazd
+
+   end%%koniec while
+       actualStarCenter{1} = nowaGwiazda;
+end
+finalStarCenter = nowaGwiazda
+ostatnie(matchedSeq,stars,finalStarCenter)
 
 end
 

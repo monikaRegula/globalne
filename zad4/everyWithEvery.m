@@ -2,8 +2,8 @@ function everyWithEvery (seq1,seq2,seq3,seq4,match,mismatch,gap)
 %funkcja tworzy macierz scorów przy porównaniu ka¿dej sekwencji z ka¿d¹
 ALLSEQ = [seq1,'*' seq2,'*',seq3,'*',seq4];
 %tworzê tablicê z osobnymi sekwencjami
-A = char(split(ALLSEQ,'*'));
-disp('kazdaZKazda')
+A = char(split(ALLSEQ,'*'))
+disp('kazdaZKazda');
 
 %prealokacja tabeli
 rightCorner = zeros(4);
